@@ -1,0 +1,16 @@
+# Microsoft Office temporary lock files
+~$*
+
+# Backup files
+*_backup.pptx
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# IDE files
+.vscode/
+.idea/
