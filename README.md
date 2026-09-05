@@ -54,7 +54,7 @@ The dataset `seasonal_agriculture_performance_dataset.csv` contains 4,000 farm o
 - **Pandas:** Tabular data ingestion, missing value imputation, and group-wise aggregations.
 - **NumPy:** Vectorized mathematical transformations and conditional indexing.
 - **Matplotlib & Seaborn:** Academic-grade statistical visualizations and high-resolution chart generation.
-- **SciPy (`scipy.stats`):** Non-parametric statistical inference (Kruskal-Wallis $H$-test) and Spearman rank correlation.
+- **SciPy (`scipy.stats`):** Non-parametric statistical inference (Kruskal-Wallis H-test) and Spearman rank correlation.
 - **Google Colab / Jupyter Notebook:** Interactive reproducible analytical notebook.
 - **Git & GitHub:** Version control and public repository hosting.
 - **Microsoft PowerPoint:** Presentation deck reporting.
@@ -74,20 +74,22 @@ The dataset `seasonal_agriculture_performance_dataset.csv` contains 4,000 farm o
 
 ## Data Cleaning Methodology
 All cleaning was executed on a copy of the dataset (`clean_df`) preserving the original raw CSV:
-1. **Rainfall Imputation:** Missing values in `Rainfall_mm` ($N = 48$) were imputed using season-wise median values:
+1. **Rainfall Imputation:** Missing values in `Rainfall_mm` (N = 48) were imputed using season-wise median values:
    - Kharif Median: **854.75 mm**
    - Rabi Median: **430.30 mm**
    - Zaid Median: **283.30 mm**
-2. **Soil Moisture Imputation:** Missing values in `Soil_Moisture_pct` ($N = 40$) were imputed using season-wise median values:
+2. **Soil Moisture Imputation:** Missing values in `Soil_Moisture_pct` (N = 40) were imputed using season-wise median values:
    - Kharif Median: **30.50%**
    - Rabi Median: **24.50%**
    - Zaid Median: **19.80%**
-3. **Deterministic Yield Imputation:** Missing values in `Yield_Tonnes_Ha` ($N = 32$) were validated against the deterministic formula:
+3. **Deterministic Yield Imputation:** Missing values in `Yield_Tonnes_Ha` (N = 32) were validated against the deterministic formula:
 
-$$\text{Yield\_Tonnes\_Ha} = \frac{\text{Production\_Tonnes}}{\text{Farm\_Area\_Hectares}}$$
+```text
+Yield_Tonnes_Ha = Production_Tonnes / Farm_Area_Hectares
+```
 
-The formula `Yield_Tonnes_Ha = Production_Tonnes / Farm_Area_Hectares` was confirmed across all 3,968 non-missing rows (maximum discrepancy $< 0.01$ due to 2-decimal rounding) and used to deterministically calculate the 32 missing values.
-4. **Integrity Checks:** Verified that no invalid negative values exist in land area, rainfall, soil moisture, or inputs. Negative values in `Profit_INR` ($N = 1,966$) were confirmed as valid economic operating losses.
+The formula `Yield_Tonnes_Ha = Production_Tonnes / Farm_Area_Hectares` was confirmed across all 3,968 non-missing rows (maximum discrepancy < 0.01 due to 2-decimal rounding) and used to deterministically calculate the 32 missing values.
+4. **Integrity Checks:** Verified that no invalid negative values exist in land area, rainfall, soil moisture, or inputs. Negative values in `Profit_INR` (N = 1,966) were confirmed as valid economic operating losses.
 5. **Post-Cleaning Verification:** The cleaned dataset retains all **4,000 rows**, 0 duplicate rows, 0 duplicate `Farm_ID` values, and **0 remaining missing values** across 29 columns (after adding `Profit_Status`).
 
 ---
@@ -139,9 +141,9 @@ The formula `Yield_Tonnes_Ha = Production_Tonnes / Farm_Area_Hectares` was confi
 ### 5. Rainfall and Yield Relationship (Main Result Chart 5 Scatter)
 - **Title:** `Relationship Between Rainfall and Agricultural Yield`
 - **File:** `chart5_rainfall_yield_scatter.png`
-- **Spearman Rank Correlation:** $\rho = \mathbf{0.1295}$
-- **p-value:** $p = \mathbf{1.9896 \times 10^{-16}} < 0.05$
-- **Sample Size:** $N = 4,000$ farm records
+- **Spearman Rank Correlation:** rho = **0.1295**
+- **p-value:** p = **1.9896e-16** (< 0.05)
+- **Sample Size:** N = 4,000 farm records
 - **Interpretation:** The analysis indicates a statistically significant, weak positive association between rainfall and yield.
 - **Causation Guardrail:** **Correlation does not establish causation.** Higher rainfall does not singularly cause higher yields; multiple agronomic factors operate concurrently.
 
@@ -150,18 +152,18 @@ The formula `Yield_Tonnes_Ha = Production_Tonnes / Farm_Area_Hectares` was confi
 ## Statistical Methods
 
 ### Kruskal-Wallis Non-Parametric Hypothesis Test
-Because agricultural yield distributions are non-normal and positively skewed, a one-way ANOVA would violate normality assumptions. A non-parametric **Kruskal-Wallis $H$-test** was conducted:
-- **Null Hypothesis ($H_0$):** Median yield distributions are identical across Kharif, Rabi, and Zaid seasons.
-- **Alternative Hypothesis ($H_1$):** At least one season has a yield distribution that differs from the others.
+Because agricultural yield distributions are non-normal and positively skewed, a one-way ANOVA would violate normality assumptions. A non-parametric **Kruskal-Wallis H-test** was conducted:
+- **Null Hypothesis (H0):** Median yield distributions are identical across Kharif, Rabi, and Zaid seasons.
+- **Alternative Hypothesis (H1):** At least one season has a yield distribution that differs from the others.
 - **Results:**
-  - $H\text{-Statistic} = \mathbf{70.5935}$
-  - $p\text{-value} = \mathbf{4.6860 \times 10^{-16}} < 0.05$
+  - **H-Statistic:** **70.5935**
+  - **p-value:** **4.6860e-16** (< 0.05)
 - **Conclusion:** There is statistically significant evidence that agricultural yield distributions differ across seasons.
 
 ### Supporting Irrigation Analysis (Tabular)
 Tabular summary across irrigation methods:
 
-| Irrigation Method | Farm Count | Median Yield (t/ha) | Median Profit (INR) | Median Water Used ($m^3$) | Median Water Efficiency ($t/1000m^3$) |
+| Irrigation Method | Farm Count | Median Yield (t/ha) | Median Profit (INR) | Median Water Used (m³) | Median Water Efficiency (t/1000m³) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Drip** | 915 | **1.96** | **INR 52,895** | 4,606 | 3.2580 |
 | **Sprinkler** | 734 | 1.80 | INR 7,840 | 4,687 | 2.6520 |
@@ -169,10 +171,10 @@ Tabular summary across irrigation methods:
 | **Flood** | 1,310 | 1.63 | -INR 12,131 | 6,326 | 1.9505 |
 
 ### Seasonal Profitability Proportions
-Farms were categorized into operational status (`Profitable` if $\text{Profit\_INR} > 0$, else `Loss`):
-- **Kharif:** **57.79%** Profitable ($1,028 / 1,779$ farms)
-- **Rabi:** **48.86%** Profitable ($795 / 1,627$ farms)
-- **Zaid:** **35.52%** Profitable ($211 / 594$ farms)
+Farms were categorized into operational status (`Profitable` if `Profit_INR > 0`, else `Loss`):
+- **Kharif:** **57.79%** Profitable (1,028 / 1,779 farms)
+- **Rabi:** **48.86%** Profitable (795 / 1,627 farms)
+- **Zaid:** **35.52%** Profitable (211 / 594 farms)
 
 ---
 
@@ -181,8 +183,8 @@ Farms were categorized into operational status (`Profitable` if $\text{Profit\_I
 2. **Seasonal Profitability Differences:** Kharif was the sole season with a positive median net profit (**INR 38,808**), whereas Rabi (-INR 3,187) and Zaid (-INR 62,144) exhibited negative median operating margins in this dataset.
 3. **Rainfall Gradient:** Median rainfall during Kharif was **854.75 mm**, approximately 2.0 times that of Rabi (**430.30 mm**) and 3.0 times that of Zaid (**283.30 mm**).
 4. **Crop-Season Variation:** Crop yields varied across seasons; Sugarcane recorded the highest median yield among the crops analyzed (38.78–56.65 t/ha), while Pulses (0.655–1.09 t/ha) and Cotton (0.955–1.44 t/ha) recorded lower median yields.
-5. **Rainfall-Yield Association:** Non-parametric Spearman correlation demonstrated a statistically significant, weak positive association between rainfall and yield ($\rho = 0.1295, p = 1.99 \times 10^{-16}, N = 4,000$).
-6. **Statistically Significant Seasonal Differences:** The Kruskal-Wallis test produced $H = 70.5935$ ($p = 4.69 \times 10^{-16} < 0.05$), confirming statistically significant evidence that yield distributions differ across seasons.
+5. **Rainfall-Yield Association:** Non-parametric Spearman correlation demonstrated a statistically significant, weak positive association between rainfall and yield (rho = 0.1295, p = 1.99e-16, N = 4,000).
+6. **Statistically Significant Seasonal Differences:** The Kruskal-Wallis test produced H = 70.5935 (p = 4.69e-16 < 0.05), confirming statistically significant evidence that yield distributions differ across seasons.
 7. **Irrigation-Method Association:** Farms utilizing Drip irrigation recorded the highest median profit (**INR 52,895**) and yield (**1.96 t/ha**), whereas Flood irrigation was associated with the highest water consumption (**6,326 m³**) and negative median returns (-INR 12,131).
 8. **Seasonal Profitability Rates:** The proportion of profitable farms was highest in Kharif (**57.79%**), followed by Rabi (**48.86%**), and lowest in Zaid (**35.52%**).
 
