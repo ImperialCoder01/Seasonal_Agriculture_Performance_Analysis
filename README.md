@@ -1,8 +1,12 @@
 # Seasonal Agriculture Performance Analysis
 
-**VOIS AICTE Internship Batch 1 (2026–2027) — Major Project**  
+**Program:** VOIS AICTE Internship Batch 1 (2026–2027) — Major Project  
+**Student Name:** Vishal Kumar Tripathi  
+**College:** KCC Institute of Technology and Management  
+**AICTE Student ID:** STU6a1a9c1c1a8c11780128796  
 **Submission Deadline:** 10 September 2026  
 **Project Track:** Data Analytics & Academic Research  
+**GitHub Repository:** [https://github.com/ImperialCoder01/Seasonal_Agriculture_Performance_Analysis](https://github.com/ImperialCoder01/Seasonal_Agriculture_Performance_Analysis)
 
 ---
 
@@ -210,20 +214,13 @@ Farms were categorized into operational status (`Profitable` if $\text{Profit\_I
 
 ## Project Files
 ```
-Seasonal-Agriculture-Performance-Analysis/
+Seasonal_Agriculture_Performance_Analysis/
 │
-├── Seasonal_Agriculture_Performance_Analysis.ipynb    # Fully executed 25-section Jupyter Notebook (Colab compatible)
-├── seasonal_agriculture_performance_cleaned.csv       # Cleaned dataset (4,000 rows, 29 cols, 0 nulls)
-├── seasonal_agriculture_performance_dataset.csv       # Original raw dataset
-├── VOIS_Major_Project_PPT_Submission_Template.pptx   # Updated 14-slide presentation deck
-├── Major Project_Seasonal Agriculture Performance...  # Problem statement PDF
-├── README.md                                          # Academic project documentation
-│
-├── chart1_seasonal_yield.png                          # Chart 1: Median Agricultural Yield by Season
-├── chart2_seasonal_profit.png                         # Chart 2: Median Profit by Season
-├── chart3_seasonal_rainfall.png                       # Chart 3: Median Rainfall by Season
-├── chart4_crop_season_heatmap.png                     # Chart 4: Median Crop Yield Across Seasons
-└── chart5_rainfall_yield_scatter.png                  # Chart 5: Rainfall vs Yield Scatter Plot
+├── Major Project_Seasonal Agriculture Performance Analysis.pdf  # Project problem statement
+├── Seasonal_Agriculture_Performance_Analysis.ipynb              # Fully executed Jupyter Notebook
+├── seasonal_agriculture_performance_dataset.csv                 # Raw dataset (4,000 records)
+├── Vishal Kumar Tripathi_VOIS_Major_Project_PPT_Submission.pptx # 14-slide presentation deck
+└── README.md                                                    # Project documentation & findings
 ```
 
 ---
