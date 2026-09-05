@@ -1,6 +1,6 @@
 # Seasonal Agriculture Performance Analysis
 
-**Program:** VOIS AICTE Internship Batch 1 (2026–2027) — Major Project  
+**Program:** VOIS AICTE Internship Batch (2026–2027) — Major Project  
 **Student Name:** Vishal Kumar Tripathi  
 **College:** KCC Institute of Technology and Management  
 **AICTE Student ID:** STU6a1a9c1c1a8c11780128796  
